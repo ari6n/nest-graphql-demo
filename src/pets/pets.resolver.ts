@@ -17,7 +17,3 @@ export class PetsResolver {
         return this.petsService.createPet(createPetInput);
     }
 }
-
-// DON'T FORGET TO:
-// describe all in emacs-doc
-// push changes into GitHub
