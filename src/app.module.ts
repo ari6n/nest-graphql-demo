@@ -5,6 +5,7 @@ import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { upperDirectiveTransformer } from './common/directives/upper-case.directive';
 import { RecipesModule } from './recipes/recipes.module';
 import { PetsModule } from './pets/pets.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -23,6 +24,12 @@ import { PetsModule } from './pets/pets.module';
           }),
         ],
       },
+    }),
+    TypeOrmModule.forRoot({
+      type:        'sqlite',
+      database:    ':memory:',
+      entities:    ['dist/**/*.entity{.ts,.js}'],
+      synchronize: true,                          // !!! DON'T USE IN PRODUCTION THIS OPTION!
     }),
   ],
 })
