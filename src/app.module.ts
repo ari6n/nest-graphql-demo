@@ -6,6 +6,7 @@ import { upperDirectiveTransformer } from './common/directives/upper-case.direct
 import { RecipesModule } from './recipes/recipes.module';
 import { PetsModule } from './pets/pets.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OwnersModule } from './owners/owners.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       entities:    ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,                          // !!! DON'T USE IN PRODUCTION THIS OPTION!
     }),
+    OwnersModule,
   ],
 })
 export class AppModule {}

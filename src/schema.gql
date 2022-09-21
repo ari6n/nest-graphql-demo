@@ -19,18 +19,32 @@ type Pet {
   id: Int!
   name: String!
   type: String
+  ownerId: Int!
+  owner: Owner!
+}
+
+type Owner {
+  id: Int!
+  name: String!
+  pets: [Pet!]
 }
 
 type Query {
   recipe(id: String!): Recipe!
   recipes(skip: Int = 0, take: Int = 25): [Recipe!]!
+  getPet(id: Int!): Pet!
   pets: [Pet!]!
+  owners: [Owner!]!
+  owner(id: Int!): Owner!
 }
 
 type Mutation {
   addRecipe(newRecipeData: NewRecipeInput!): Recipe!
   removeRecipe(id: String!): Boolean!
   createPet(createPetInput: CreatePetInput!): Pet!
+  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  removeOwner(id: Int!): Owner!
 }
 
 input NewRecipeInput {
@@ -42,6 +56,16 @@ input NewRecipeInput {
 input CreatePetInput {
   name: String!
   type: String
+  ownerId: Int!
+}
+
+input CreateOwnerInput {
+  name: String!
+}
+
+input UpdateOwnerInput {
+  name: String
+  id: Int!
 }
 
 type Subscription {
